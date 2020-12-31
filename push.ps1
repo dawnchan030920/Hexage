@@ -4,7 +4,7 @@
 
 # User prompt
 Write-Output "Thank you for using Hexage pushing script!"
-Write-Output "Prerequirements: 1. You have config your git name and email. 2. You have created your project on github."
+Write-Output "Prerequirements: 1. You have config your git. 2. You have created your project on github."
 Write-Output "Please ensure that your usage is within the following ones:"
 Write-Output "1. You don't have the transfer folder named '.tempor_repo', indicating you havn't used it before."
 Write-Output "2. You have the transfer folder, and it's generated and processed automatically by the script."
@@ -53,3 +53,4 @@ else {
     git push origin source --force
 }
 Write-Output "DONE!"
+Pause
