@@ -18,4 +18,5 @@ Set-Location ..
 npm i
 npm install hexo-cli -g
 hexo clean
+Write-Output "DONE!"
 Pause
