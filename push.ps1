@@ -38,19 +38,37 @@ if (! (Test-Path "./.tempor_repo")) {
     git push origin source --force
 }
 else {
+    $mode =  Read-Host "In which mode, --force(f) or pull(p)?"
     Set-Location "./.tempor_repo"
     git checkout main
+    Remove-Item ./* -Recurse
     Copy-Item ../public/* . -Recurse
     git add .
     git commit -m "Update main"
     git checkout source
+    Remove-Item ./* -Recurse
     Copy-Item ../scaffolds,../themes,../source,../_config.landscape.yml,../_config.yml,../package.json,../package-lock.json . -Recurse
     git add .
     git commit -m "Update source"
     git checkout main
-    git push origin main --force
+    switch ($mode) {
+        "f" { git push origin main --force }
+        "p" {
+            git pull origin main
+            git push origin main
+        }
+        Default {
+            Write-Output "Invalid input."
+        }
+    }
     git checkout source
-    git push origin source --force
+    switch ($mode) {
+        "f" {git push origin source --force }
+        "p" {
+            git pull origin source
+            git push origin source
+        }
+    }
 }
 Write-Output "DONE!"
 Pause
